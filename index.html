@@ -9,50 +9,29 @@
 </head>
 <body>
 <script>
-    function findDuplicate() {
 
-        let userInputNumber = prompt("напишіть трьох значне число","123");
-
-        if (userInputNumber < 100 || userInputNumber > 999){
-            return alert("число не трьох значне !!!");
-        }
-
+    let userInputNumber = prompt("напишіть трьох значне число","123");
+    if (userInputNumber >= 100 || userInputNumber <= 999){
         let digits = userInputNumber.split('');
-        let uniqDigits = new Set(digits);
-        let duplicates = [];
         let firstDigit = digits[0];
+        let secondDigit = digits[1];
+        let thirdDigit = digits[2];
 
-        function areAllDigitsSame() {
-            for (let i=1; i< digits.length; i++) {
-                if (digits[i] !== firstDigit){
-                    return false;
-                }
-            }
-            return true;
+        if (firstDigit === secondDigit && secondDigit === thirdDigit){
+            alert(`всі цифри рівні ${digits}`);
+        } else if (firstDigit === secondDigit){
+            alert(`рівні перша(${firstDigit}) та друга цифри(${secondDigit})`);
+        } else if (firstDigit === thirdDigit){
+            alert(`рівні перша(${firstDigit}) та третя цифри(${thirdDigit})`);
+        } else if (secondDigit === thirdDigit){
+            alert(`рівні друга(${secondDigit}) та третя цифри(${thirdDigit})`);
+        } else{
+            alert("немає однакових цифр");
         }
-        let resultSame = areAllDigitsSame();
-        if (resultSame === true){
-            alert("всі цифри в введеному числі однакові")
-        }
-
-
-        for (let digit of uniqDigits) {
-            let count = digits.filter(digits => digits === digit).length;
-            if (count > 1) {
-                duplicates.push(digit);
-            }
-        }
-        return duplicates;
-
-
+    } else if (userInputNumber < 100 || userInputNumber > 999){
+        alert("число не трьох значне !!!");
     }
-    let duplicateDigits = findDuplicate();
 
-    if (Array.isArray(duplicateDigits) && duplicateDigits.length > 0){
-        alert(`однакові цифри в введенному числі: ${duplicateDigits.join(', ')} ` );
-    } else{
-        alert("в введенному числі немає однакових цифр.");
-    }
 </script>
 </body>
 </html>
